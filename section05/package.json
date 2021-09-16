@@ -21,5 +21,8 @@
   "homepage": "https://github.com/Archiblu22/cse341#readme",
   "devDependencies": {
     "nodemon": "^2.0.12"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
