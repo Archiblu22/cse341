@@ -4,16 +4,18 @@ const MongoClient = mongodb.MongoClient;
 let _db;
 
 const mongoConnect = callback => {
-  MongoClient.connect('mongodb+srv://archiblue22:Paguirre1478@cluster0.gfhn1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
-  .then(client => {
-    console.log('Connected!');
-    _db = client.db();
-    callback();
-  })
-  .catch(err => {
-    console.log(err);
-    throw err;
-  });
+  MongoClient.connect(
+    'mongodb+srv://archiblue22:Paguirre1478@cluster0.gfhn1.mongodb.net/myFirstDatabase?retryWrites=true'
+  )
+    .then(client => {
+      console.log('Connected!');
+      _db = client.db();
+      callback();
+    })
+    .catch(err => {
+      console.log(err);
+      throw err;
+    });
 };
 
 const getDb = () => {
