@@ -20,7 +20,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
   User.findById('615b69820448855359bf8739')
+    .populate('cart.items.productId')
     .then(user => {
+      console.log(user);
       req.user = user;
       next();
     })
