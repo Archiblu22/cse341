@@ -14,13 +14,13 @@ app.set('views', 'views');
 
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
+const authRoutes = require('./routes/auth');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
-  User.findById('615b69820448855359bf8739')
-    .populate('cart.items.productId')
+  User.findById('615b69820448855359bf8739') //Different in Heroku
     .then(user => {
       console.log(user);
       req.user = user;
@@ -31,9 +31,12 @@ app.use((req, res, next) => {
 
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
+app.use(authRoutes);
 
 app.use(errorController.get404);
 
+
+// Different in Heroku
 mongoose
 .connect('mongodb+srv://archiblue22:mongoDB@cluster0.gfhn1.mongodb.net/shop?retryWrites=true&w=majority')
 .then(result => {
