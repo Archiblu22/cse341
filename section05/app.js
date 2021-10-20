@@ -13,6 +13,7 @@ const User = require('./models/user');
 
 const MONGODB_URI = 'mongodb+srv://archiblue22:mongoDB@cluster0.gfhn1.mongodb.net/shop';
 
+
 const app = express();
 const store = new MongoDBStore({
   uri: MONGODB_URI,
@@ -72,7 +73,6 @@ app.get('/500', errorController.get500);
 app.use(errorController.get404);
 
 app.use((error, req, res, next) => {
-  // res.redirect('/500');
   res.status(500).render('500', {
     pageTitle: 'Error!',
     path: '/500',
